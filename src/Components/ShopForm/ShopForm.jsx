@@ -13,7 +13,7 @@ const ShopForm = ({ refetch, areas, categories }) => {
     const dateRange = [openingDate, closingDate];
     const shopData = { ...rest, dateRange };
 
-    fetch("http://localhost:5000/addShop", {
+    fetch("https://hidden-forest-48220.herokuapp.com/addShop", {
       method: "POST",
       headers: {
         "content-type": "application/json",

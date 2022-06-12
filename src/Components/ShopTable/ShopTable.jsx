@@ -12,7 +12,9 @@ const ShopTable = ({ data, refetch }) => {
   }, [dispatch, data]);
 
   const handleDeleteShop = (id) => {
-    fetch(`http://localhost:5000/deleteShop?id=${id}`, { method: "DELETE" })
+    fetch(`https://hidden-forest-48220.herokuapp.com/deleteShop?id=${id}`, {
+      method: "DELETE",
+    })
       .then((res) => res.json())
       .then(() => refetch());
   };

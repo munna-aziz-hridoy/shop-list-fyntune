@@ -3,6 +3,7 @@ import ShopForm from "../ShopForm/ShopForm";
 import ShopTable from "../ShopTable/ShopTable";
 import { useQuery } from "react-query";
 import { Form, Select, Button } from "antd";
+import Spinner from "../Spinner";
 
 const areas = [
   "thane",
@@ -29,7 +30,7 @@ const Home = () => {
     ["shops", selectedArea, selectedCategory],
     () => {
       return fetch(
-        `http://localhost:5000/getShop?area=${
+        `https://hidden-forest-48220.herokuapp.com/getShop?area=${
           selectedArea || "undefined"
         }&category=${selectedCategory || "undefined"}`
       ).then((res) => res.json());
@@ -37,7 +38,7 @@ const Home = () => {
   );
 
   if (isLoading) {
-    return <p>Loading</p>;
+    return <Spinner />;
   }
 
   const handleFilter = (values) => {
@@ -46,13 +47,13 @@ const Home = () => {
   };
 
   return (
-    <div className="container mx-auto my-16">
-      <div className="w-full flex justify-center items-center">
+    <div className="container mx-auto my-16 p-3">
+      <div className="w-full flex flex-col md:flex-row justify-center items-center">
         <div className="w-full md:w-[40%]">
           <ShopForm refetch={refetch} categories={categories} areas={areas} />
         </div>
         <div className="w-full md:w-[60%]">
-          <div className="flex justify-start items-start my-8 gap-24">
+          <div className="flex flex-col md:flex-row justify-start items-start my-8 gap-3 md:gap-24">
             <h2 className="text-2xl font-bold text-gray-500 capitalize text-left w-[35%]">
               filter by:
             </h2>
